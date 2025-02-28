@@ -6,6 +6,7 @@ import (
 	"log/slog"
 	"net/http"
 
+	"github.com/TeluTrix/tarc-server/internal/schema"
 	"github.com/TeluTrix/tarc-server/internal/service"
 )
 
@@ -18,6 +19,9 @@ const v = "0.1.0"
 func init() {
 	service.ReadConfig()
 	service.ConnectToDB(service.Conf)
+	service.DB.AutoMigrate(schema.Folder{})
+	service.DB.AutoMigrate(schema.Item{})
+	service.DB.AutoMigrate(schema.Tag{})
 }
 
 func main() {

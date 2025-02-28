@@ -3,6 +3,7 @@ module github.com/TeluTrix/tarc-server
 go 1.23.0
 
 require (
+	github.com/google/uuid v1.6.0
 	github.com/pelletier/go-toml/v2 v2.2.3
 	gorm.io/driver/mysql v1.5.7
 	gorm.io/gorm v1.25.12
