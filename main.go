@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"log/slog"
 	"net/http"
 
 	"github.com/TeluTrix/tarc-server/internal/controller"
+	"github.com/TeluTrix/tarc-server/internal/middleware"
 	"github.com/TeluTrix/tarc-server/internal/schema"
 	"github.com/TeluTrix/tarc-server/internal/service"
 )
@@ -20,7 +22,8 @@ func init() {
 func main() {
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/api/version", controller.GetCurrentVersion)
+	mux.Handle("/api/version", middleware.LoggingMiddleware(http.HandlerFunc(controller.GetCurrentVersion)))
 
+	slog.Info(fmt.Sprintf("Started tarc-server on port: %d", service.Conf.Server.Port))
 	http.ListenAndServe(fmt.Sprintf(":%d", service.Conf.Server.Port), mux)
 }
