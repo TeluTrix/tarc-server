@@ -11,4 +11,8 @@ type Config struct {
 		Pwd  string `toml:"pwd"`
 		Name string `toml:"name"`
 	} `toml:"database"`
+	Auth struct {
+		EnableAuth bool     `toml:"enable_auth"`
+		AuthTokens []string `toml:"auth_tokens"`
+	} `toml:"auth"`
 }

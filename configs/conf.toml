@@ -7,3 +7,9 @@ port = 3306
 user = "tarc"
 pwd  = "tarc123"
 name = "tarc"
+
+[auth]
+enable_auth = false
+auth_tokens = [
+    "tarc-9Pd083MgREIRtsuo"
+]
